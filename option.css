@@ -1,0 +1,40 @@
+table
+{
+    width: 100%;
+}
+.namabarang, .hargabarang, .jumlahbarang, .bayar
+{
+    height: 30px;
+    width: 100%;
+}
+input
+{
+ text-align: right;
+ font-size: 18px;
+ color: blue;
+ font-weight: bold;
+}
+.pelanggan, .buttonpelanggan, .titlenamabarang, .titlehargabarang, .titlestatuspelanggan, .titletotalhargabarang, .titlejumlahbarang, .titlediscount, .titlebayar, .titlekembali
+{
+    height: 40px;
+}
+.isi
+{
+   border: 1px solid red;
+}
+.btn1, .btn3
+{
+    height: 40px;
+    width: 50%;
+}
+button
+{
+ position: relative;
+ left: 40%;
+ padding: 8px 8px;
+ width: 180px;
+ border-radius: 4px;
+ cursor: pointer;
+ background-color: rgb(8, 23, 97);
+ color: beige;
+}

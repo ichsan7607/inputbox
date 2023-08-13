@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bilangan genap</title>
+    <link rel="stylesheet" href="option.css">
+</head>
+<body>
+  <table>
+     <tr>
+        <td>Nama Barang</td>
+        <td class="titlenamabarang" colspan="2"><input type="text" id="namabarang" class="namabarang"></td>
+    </tr>    
+    <tr>
+        <td>Harga Barang</td>
+        <td class="titlehargabarang" colspan="2"><input type="text" id="hargabarang" class="hargabarang" maxlength="6"></td>
+    </tr>    
+    <tr>
+        <td>Jumlah Barang</td>
+        <td class="titlejumlahbarang" colspan="2"><input type="text" id="jumlahbarang" class="jumlahbarang" maxlength="6"></td>
+    </tr>
+    <tr class="pelanggan">
+        <td>Pelangggan atau bukan</td>
+        <td><input type="radio" name="pelanggan" value="Pelanggan "> Pelanggan </td>
+        <td><input type="radio" name="pelanggan" value="Bukan Pelanggan">Bukan Pelanggan </td>
+      </tr>      
+    <tr class="buttonpelanggan">
+        <td colspan="2" class="btn1"><button onclick=" jawab()">H I T U N G </button></td>
+        <td colspan="2" class="btn3"><button onclick="reset()">R E S E T </button> </td>
+      </tr>
+      <tr>
+        <td  class="isi">Nama Barang</td>
+        <td class="titlenamabarang" colspan="2"><p id="hasilnama"></p></td>
+      </tr>      
+      <tr>
+        <td  class="isi">Harga Barang</td>
+        <td class="titlehargabarang" colspan="2"><p id="hasilharga"></p></td>
+      </tr>
+      <tr>
+        <td  class="isi">Jumlah Barang</td>
+        <td class="titlejumlahbarang" colspan="2"><p id="hasiljumlahbarang"></p></td>
+      </tr>
+      <tr>
+        <td class="isi" >Status Pelanggan</td>
+        <td class="titlestatuspelanggan" colspan="2"><p id="hasilstatuspelanggan"></p></td>
+      </tr>
+      <tr>
+        <td class="isi" >Total  Harga</td>
+        <td class="titletotalhargabarang" colspan="2"><p id="hasiltotalharga"></p></td><input type="hidden" id="bayangantotalharga">
+      </tr>      
+      <tr>
+        <td class="isi" >Discount</td>
+        <td class="titlediscount" colspan="2"><p id="hasildiscount"></p></td>&nbsp;<input type="hidden" id="bayangandiskon">
+      </tr>
+      <tr> 
+        <td  class="isi">Bayar</td>
+        <td class="titlebayar" colspan="2"><input type="text" id="bayar" class="bayar" maxlength="6" onkeyup="bayar() "></td>
+    </tr>    
+    <tr>
+      <td class="isi">Kembali</td>
+      <td class="titlekembali" colspan="2"><p id="hasilkembali"></p></td>
+    </tr>
+  </table>&nbsp;
+    <script>
+   function jawab() 
+    {
+       let a = document.getElementById("namabarang").value;
+        document.getElementById("hasilnama").innerHTML = a;
+        let jum = document.getElementById("jumlahbarang").value;
+        document.getElementById("hasiljumlahbarang").innerHTML = jum;
+        let b = document.getElementById("hargabarang").value;
+        document.getElementById("hasilharga").innerHTML = "Rp. " + b;
+        let c = document.getElementsByName("pelanggan")
+        for (let i = 0; i < c.length; i++) 
+        {
+            if (c[i].checked)
+             {
+                document.getElementById("hasilstatuspelanggan").innerHTML = c[i].value;
+             }
+        }
+        let tot = Number(jum)  *  Number(b)
+        document.getElementById("hasiltotalharga").innerHTML =  "Rp. " + tot;
+        document.getElementById("bayangantotalharga").value = tot;
+        for (let i = 0; i < c.length; i++) 
+        {         
+             if (c[i].checked == false)  
+             {
+                /*     let disc = ((Number(jum) * Number(b))/100)*/
+                let disc = ((10 *(Number(jum) * Number(b)))/100)
+                document.getElementById("hasildiscount").innerHTML = disc;              
+                document.getElementById("bayangandiskon").value = disc;
+            }     
+          else
+            {   
+                document.getElementById("hasildiscount").innerHTML = 0;
+                document.getElementById("bayangandiskon").value =0;
+            }     
+        }     
+    }       
+    function reset()
+    {
+        document.getElementById("namabarang").value = " ";
+        document.getElementById("hargabarang").value = " ";
+        document.getElementById("jumlahbarang").value = " ";
+        let c = document.getElementsByName("pelanggan")
+        for (let i = 0;  i< c.length; i++) 
+        {
+          c[i].checked = false;          
+        }
+        document.getElementById("hasilnama").innerHTML = " ";
+        document.getElementById("hasilstatuspelanggan").innerHTML =" ";
+        document.getElementById("hasiljumlahbarang").innerHTML = " ";
+        document.getElementById("hasilharga").innerHTML = " ";
+        document.getElementById("hasildiscount").innerHTML = " ";
+        document.getElementById("bayar").value = " ";
+    }
+    function bayar() 
+    {
+      let byr =   (Number(document.getElementById("bayar").value ) -  Number(document.getElementById("bayangantotalharga").value) -   Number(document.getElementById("bayangandiskon").value))      
+      document.getElementById("hasilkembali").innerHTML = "Rp. " + Number(byr);
+      }
+    </script>
+</body>
+</html>
